@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Stop the Docker containers
+docker-compose -f docker-compose.yml stop
+docker-compose -f docker-compose.yml down
+
+# Build the Docker containers
+docker-compose -f docker-compose.yml build
+
+# Start the Docker containers
+docker-compose -f docker-compose.yml up -d
+
+# Run database migrations
+# docker-compose -f docker-compose.yml exec app php bin/console doctrine:migrations:migrate

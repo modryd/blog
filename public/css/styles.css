@@ -1,0 +1,137 @@
+/* Reset styles */
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a:visited {
+    color: inherit;
+}
+a:hover {
+    text-decoration: none;
+}
+a.btn {
+    color: white;
+}
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navigation styles */
+.main-nav {
+    background-color: #333;
+    padding: 1em;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+li.menu-item {
+    color: #fff;
+    padding: 0.5em 1em;
+    display: block;
+    margin: 0 1em;
+    font-weight: bold;
+}
+
+li.menu-item.active {
+    background-color: #403af2 !important;
+    border-color: #403af2 !important;
+    border-radius: 5px;
+}
+
+/* Form styles */
+.form {
+    margin: 0 auto;
+    padding: 1em;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    height: 150px;
+}
+
+.form-group button {
+    padding: 0.75em 1.5em;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-group button:hover {/* General styles */
+    background-color: #0056b3;
+}
+
+/* Blog content styles */
+.blog-content-wrapper {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 1em;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-bottom: 50px;
+}
+
+.blog-content-wrapper h1 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.blog-content-wrapper .blog-post {
+    margin-bottom: 2em;
+    padding: 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+.blog-content-wrapper .blog-post h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.blog-content-wrapper .blog-post p {
+    color: #666;
+}
+
+.blog-content-wrapper .blog-post small {
+    color: #999;
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    </head>
+    <body>
+        {% include 'partials/menu.html.twig' %}
+
+        {% block body %}{% endblock %}
+    </body>
+</html>
