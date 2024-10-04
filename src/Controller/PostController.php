@@ -12,6 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
+    private const MAX_POSTS = 50;
+
     #[Route('/', name: 'home')]
     public function index(): Response
     {
@@ -21,8 +23,11 @@ class PostController extends AbstractController
     #[Route('/posts', name: 'post_list')]
     public function list(BlogPostRepository $blogPostRepository): Response
     {
-        $blogPosts = $blogPostRepository->findBy([], ['createdAt' => 'DESC']);
-
+        $blogPosts = $blogPostRepository->findBy(
+            [],
+            ['createdAt' => 'DESC'],
+            self::MAX_POSTS
+        );
         return $this->render('default/list.html.twig', [
             'blogPosts' => $blogPosts,
         ]);
