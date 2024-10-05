@@ -37,7 +37,7 @@ class PostController extends AbstractController
             ['createdAt' => 'DESC'],
             self::MAX_POSTS
         );
-        return $this->render('default/list.html.twig', [
+        return $this->render('post/list.html.twig', [
             'blogPosts' => $blogPosts,
         ]);
     }
@@ -60,13 +60,13 @@ class PostController extends AbstractController
             return $this->redirectToRoute('post_list');
         }
 
-        return $this->render('default/create.html.twig');
+        return $this->render('post/create.html.twig');
     }
 
     #[Route('/post/show/{id}', name: 'post_show')]
     public function show(BlogPost $post): Response
     {
-        return $this->render('default/show.html.twig', [
+        return $this->render('post/show.html.twig', [
             'post' => $post,
         ]);
     }

@@ -15,15 +15,23 @@ class RSSPostGenerator implements PostGeneratorInterface
 
     public function generatePost(): array
     {
-        $rssFeed = $this->loadRssFeed();
-        $size = count($rssFeed->channel->item);
-        $randomIndex = rand(0, $size - 1);
-        $item = $rssFeed->channel->item[$randomIndex];
+        try {
+            $rssFeed = $this->loadRssFeed();
+            $size = count($rssFeed->channel->item);
+            $randomIndex = \rand(0, $size - 1);
+            $item = $rssFeed->channel->item[$randomIndex];
+            $post = [
+                'title' => (string) $item->title,
+                'content' => (string) $item->description,
+            ];
+        } catch (\Exception $e) {
+            $post = [
+                'title' => 'Error loading RSS feed',
+                'content' => 'An error occurred while loading the RSS feed. Please try again later.',
+            ];
+        }
 
-        return [
-            'title' => $item->title->__toString(),
-            'content' => $item->description->__toString(),
-        ];
+        return $post;
     }
 
     private function loadRssFeed(): SimpleXMLElement
