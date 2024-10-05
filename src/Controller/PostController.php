@@ -6,6 +6,7 @@ use App\Entity\BlogPost;
 use App\Repository\BlogPostRepository;
 use App\Service\PostGeneratorInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
-    private const MAX_POSTS = 50;
+    private const MAX_POSTS = 5;
 
     private PostGeneratorInterface $postGenerator;
 
@@ -30,15 +31,22 @@ class PostController extends AbstractController
     }
 
     #[Route('/posts', name: 'post_list')]
-    public function list(BlogPostRepository $blogPostRepository): Response
-    {
-        $blogPosts = $blogPostRepository->findBy(
-            [],
-            ['createdAt' => 'DESC'],
+    public function list(
+        BlogPostRepository $blogPostRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response {
+        $queryBuilder = $blogPostRepository->createQueryBuilder('bp')
+            ->orderBy('bp.createdAt', 'DESC');
+
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1),
             self::MAX_POSTS
         );
+
         return $this->render('post/list.html.twig', [
-            'blogPosts' => $blogPosts,
+            'pagination' => $pagination,
         ]);
     }
 

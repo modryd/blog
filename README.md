@@ -18,6 +18,9 @@ php bin/console doctrine:fixtures:load
 
 php bin/console doctrine:schema:update --force
 
+## Pagination
+composer require knplabs/knp-paginator-bundle
+
 ## Try
 Available at http://localhost:8023
 You can try also at https://blog.podnika.cz
