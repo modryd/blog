@@ -5,7 +5,9 @@
 {% block body %}
 <div class="blog-content-wrapper">
     <h1>Create a new blog post</h1>
-    <button class="btn btn-success" type="button" id="fill-random">Fill with random content</button>
+    <div class="sub-menu">
+        <button class="btn btn-success" data-url="{{ path('get_random_post') }}" type="button" id="fill-random">Fill with random content</button>
+    </div>
 
     <form method="post" class="form">
         <div class="form-group">
@@ -22,17 +24,6 @@
     </form>
 </div>
 
-<script>
-    document.getElementById('fill-random').addEventListener('click', async function() {
-        try {
-            const response = await fetch('{{ path('get_random_post') }}');
-            const data = await response.json();
+<script src="{{ asset('js/post_content.js') }}"></script>
 
-            document.getElementById('title').value = data.title;
-            document.getElementById('content').value = data.content;
-        } catch (error) {
-            console.error('Error fetching random post:', error);
-        }
-    });
-</script>
 {% endblock %}

@@ -25,9 +25,11 @@ class RSSPostGenerator implements PostGeneratorInterface
                 'content' => (string) $item->description,
             ];
         } catch (\Exception $e) {
+            $msg = 'An error occurred while loading the RSS feed.' . PHP_EOL;
+            $msg.= htmlspecialchars_decode($e->getMessage());
             $post = [
-                'title' => 'Error loading RSS feed',
-                'content' => 'An error occurred while loading the RSS feed. Please try again later.',
+                'title' => 'Error loading RSS feed from: ' . $this->url,
+                'content' => $msg,
             ];
         }
 
