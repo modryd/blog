@@ -33,16 +33,8 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/{id}', name: 'post_show')]
-    public function show(BlogPost $post): Response
-    {
-        return $this->render('default/show.html.twig', [
-            'post' => $post,
-        ]);
-    }
-
     #[Route('/post/new', name: 'create_post')]
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         if ($request->isMethod('POST')) {
             $title = $request->request->get('title');
@@ -60,6 +52,14 @@ class PostController extends AbstractController
         }
 
         return $this->render('default/create.html.twig');
+    }
+
+    #[Route('/post/show/{id}', name: 'post_show')]
+    public function show(BlogPost $post): Response
+    {
+        return $this->render('default/show.html.twig', [
+            'post' => $post,
+        ]);
     }
 
     #[Route('/post/delete/{id}', name: 'post_delete', methods: ['POST'])]
