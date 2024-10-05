@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\BlogPost;
 use App\Repository\BlogPostRepository;
+use App\Service\PostGeneratorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     private const MAX_POSTS = 50;
+
+    private PostGeneratorInterface $postGenerator;
+
+    public function __construct(PostGeneratorInterface $postGenerator)
+    {
+        $this->postGenerator = $postGenerator;
+    }
 
     #[Route('/', name: 'home')]
     public function index(): Response
@@ -73,5 +82,13 @@ class PostController extends AbstractController
         }
 
         return $this->redirectToRoute('post_list');
+    }
+
+    #[Route('/api/random-post', name: 'get_random_post')]
+    public function getRandomPost(): JsonResponse
+    {
+        $post = $this->postGenerator->generatePost();
+
+        return new JsonResponse($post);
     }
 }

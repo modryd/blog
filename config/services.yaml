@@ -20,3 +20,11 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Service\PostGeneratorInterface:
+        # alias: App\Service\RandomPostGenerator
+        alias: App\Service\RSSPostGenerator
+
+    App\Service\RSSPostGenerator:
+        arguments:
+            $url: 'https://www.irozhlas.cz/rss/irozhlas/section/zpravy-domov' # Replace with your actual RSS feed URL
