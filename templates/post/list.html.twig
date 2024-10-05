@@ -8,7 +8,7 @@
 
     <div class="sub-menu">
         {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('create_post') }}" class="btn btn-primary">Create post</a>
+            <a href="{{ path('post_create') }}" class="btn btn-primary">Create post</a>
         {% endif %}
     </div>
 

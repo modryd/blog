@@ -50,7 +50,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/new', name: 'create_post')]
+    #[Route('/post/new', name: 'post_create')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         if ($request->isMethod('POST')) {

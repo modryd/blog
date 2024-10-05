@@ -3,8 +3,8 @@
         <li class="btn btn-primary menu-item {% if app.request.attributes.get('_route') == 'home' %}active{% endif %}">
             <a href="{{ path('home') }}">Homepage</a>
         </li>
-        <li class="btn btn-primary menu-item {% if app.request.attributes.get('_route') == 'post_list' %}active{% endif %}">
-            <a href="{{ path('post_list') }}">List Posts</a>
+        <li class="btn btn-primary menu-item {% if app.request.attributes.get('_route') starts with 'post_' %}active{% endif %}">
+            <a href="{{ path('post_list') }}">Posts</a>
         </li>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li class="btn btn-primary menu-item {% if app.request.attributes.get('_route') == 'app_logout' %}active{% endif %}">
